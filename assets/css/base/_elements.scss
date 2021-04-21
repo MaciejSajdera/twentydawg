@@ -10,7 +10,6 @@ html {
 	box-sizing: border-box;
 }
 
-
 body {
 	background: $color__background-body; // Fallback for when there is no custom background color defined.
 }
@@ -40,7 +39,6 @@ img {
 figure {
 	margin: 1em 0; // Extra wide images within figure tags don't overflow the content area.
 }
-
 
 /* LINKS */
 a {
@@ -100,4 +98,71 @@ dd {
 table {
 	margin: 0 0 1.5em;
 	width: 100%;
+}
+
+.my-preloader {
+	height: 100vh;
+	position: fixed;
+	width: 100vw;
+	background: $color__background-body;
+	z-index: 99999;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.3s ease-in;
+	opacity: 1;
+
+	.preloader-content {
+		background: url(../dist/img/20dawgloader.png) no-repeat;
+		display: block;
+		height: 10em;
+		width: 10em;
+		background-size: contain;
+		background-position: center;
+		animation: mymove 1.5s infinite;
+	}
+}
+
+@keyframes mymove {
+	0% {
+		transform: scale(1.1);
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(1.1);
+		opacity: 0;
+	}
+}
+
+.my-preloader-off {
+	opacity: 0;
+}
+
+.my-preloader-none {
+	display: none;
+}
+
+.site {
+	opacity: 0;
+	transition: all 0.3s ease-in;
+}
+
+#page {
+	opacity: 0;
+}
+
+.page-loaded {
+	opacity: 1 !important;
+}
+
+.font-outline {
+	color: #000;
+	-webkit-text-stroke: 1px white;
 }

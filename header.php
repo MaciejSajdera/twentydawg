@@ -21,11 +21,15 @@
 </head>
 
 <body <?php body_class(); ?>>
+<div class="my-preloader">
+	<div class="preloader-content"></div>
+</div>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
 
 	<header id="masthead" class="site-header">
+
 		<div class="site-branding">
 			<?php
 			the_custom_logo();
@@ -35,18 +39,36 @@
 				<?php
 			else :
 				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<!-- <p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p> -->
 				<?php
 			endif;
-			$_s_description = get_bloginfo( 'description', 'display' );
-			if ( $_s_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $_s_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
+				 ?>
 		</div><!-- .site-branding -->
 
+
+		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+		
+		<svg id="svgButton" class="ham hamRotate ham4" viewBox="0 0 100 100">
+				<path
+						class="line top"
+						d="m 70,33 h -40 c 0,0 -8.5,-0.149796 -8.5,8.5 0,8.649796 8.5,8.5 8.5,8.5 h 20 v -20" />
+				<path
+						class="line middle"
+						d="m 70,50 h -40" />
+				<path
+						class="line bottom"
+						d="m 30,67 h 40 c 0,0 8.5,0.149796 8.5,-8.5 0,-8.649796 -8.5,-8.5 -8.5,-8.5 h -20 v 20" />
+				</svg>
+
+		</button>
+
 		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', '_s' ); ?></button>
+
+			<video autoplay loop muted>
+				<source src="<?php echo get_template_directory_uri().'/Twenty-Dawg-Promo.mp4'; ?>" type="video/mp4">
+			</video>
+
+
 			<?php
 			wp_nav_menu(
 				array(
@@ -57,5 +79,5 @@
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
-
+	<img id="home-bg" src="<?php echo get_field("home_bg_image") ?>">
 	<div id="content" class="site-content">

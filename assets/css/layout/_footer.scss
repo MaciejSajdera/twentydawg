@@ -1,0 +1,131 @@
+.site-footer {
+	margin-top: 4em;
+
+	@media screen and (min-width: 992px) {
+		margin-top: 12em;
+	}
+
+	&__pseudo-elements {
+		position: relative;
+		height: 30vh;
+
+		@media screen and (min-width: 992px) {
+			height: 25vh;
+			margin-bottom: 12em;
+		}
+
+		.moovement {
+			background-image: url(../dist/svg/moovement.svg);
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: bottom;
+			height: 5em;
+			width: 15em;
+			margin: 0 auto;
+
+			@media screen and (min-width: 992px) {
+				height: 15em;
+				width: 30em;
+			}
+		}
+
+		&:before {
+			content: "";
+			display: block;
+			background-image: url(../dist/svg/star.svg);
+			height: 100px;
+			width: 100px;
+			// top: -50px;
+			bottom: 10%;
+			left: 0em;
+			z-index: 1;
+			position: absolute;
+			background-size: contain;
+			background-repeat: no-repeat;
+
+			@media screen and (min-width: 992px) {
+				height: 350px;
+				width: 285px;
+			}
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			background-image: url(../dist/svg/globe.svg);
+			height: 200px;
+			width: 160px;
+			top: 3em;
+			right: 0em;
+			position: absolute;
+			background-size: contain;
+			background-repeat: no-repeat;
+
+			@media screen and (min-width: 992px) {
+				height: 350px;
+				width: 285px;
+				top: 0;
+			}
+		}
+	}
+}
+
+.social-media {
+	text-align: center;
+
+	margin-bottom: 4em;
+
+	.font-outline {
+		font-size: 32px;
+		text-transform: uppercase;
+	}
+
+	&__icons {
+		display: flex;
+		justify-content: space-around;
+		width: 50%;
+		margin: 2em auto;
+
+		> * {
+			height: 30px;
+			width: 30px;
+
+			@media screen and (min-width: 992px) {
+				height: 60px;
+				width: 60px;
+			}
+		}
+
+		.facebook {
+			background-image: url(../dist/svg/facebook20.svg);
+
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+
+		.instagram {
+			background-image: url(../dist/svg/instagram20.svg);
+
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+
+		.youtube {
+			background-image: url(../dist/svg/youtube-logo.svg);
+
+			background-size: contain;
+			background-repeat: no-repeat;
+		}
+	}
+}
+
+.copyrights {
+	text-align: center;
+	font-size: 12px;
+
+	span {
+		width: 80%;
+		display: block;
+		margin: auto;
+	}
+}

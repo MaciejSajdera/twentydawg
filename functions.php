@@ -136,8 +136,8 @@ function _s_scripts() {
 	wp_enqueue_style( '_s-style', get_template_directory_uri() . '/dist/css/style.css' );
 
 	// Include our dynamic styles.
-	$custom_css = _s_dynamic_styles();
-	wp_add_inline_style( '_s-style', $custom_css );
+	// $custom_css = _s_dynamic_styles();
+	// wp_add_inline_style( '_s-style', $custom_css );
 
 	wp_enqueue_script( '_s-app', get_template_directory_uri() . '/dist/js/main.js', array(), '', true );
 
@@ -146,6 +146,57 @@ function _s_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
+
+function wpb_add_google_fonts() {
+	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', false );
+	wp_enqueue_style( 'wpb-google-fonts2', 'https://fonts.googleapis.com/css2?family=K2D:wght@300;700', false ); 
+}
+add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+
+
+
+add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
+
+function my_wp_nav_menu_objects( $items, $args ) {
+	
+	// loop
+	foreach( $items as &$item ) {
+		// $item->title .= '<span>'. $item->classes . '</span>';
+		// vars
+		$menu_thumbnail_image = get_field('menu_item_image', $item);
+		
+				// append bg image
+		if( $menu_thumbnail_image ) {
+					// $item->title .= '<span>'. $item->classes . '</span>';
+			$item->title .= ' <div class="menu-thumbnail-image" style="background-image: url('. $menu_thumbnail_image .')"></div>';
+		
+		}
+	}
+	// return
+	return $items;
+}
+
+function footer_copyright() {
+	global $wpdb;
+	$copyright_dates = $wpdb->get_results("
+	SELECT
+	YEAR(min(post_date_gmt)) AS firstdate,
+	YEAR(max(post_date_gmt)) AS lastdate
+	FROM
+	$wpdb->posts
+	WHERE
+	post_status = 'publish'
+	");
+	$output = '';
+	if($copyright_dates) {
+	$copyright = "&copy; " . $copyright_dates[0]->firstdate;
+	if($copyright_dates[0]->firstdate != $copyright_dates[0]->lastdate) {
+	$copyright .= '-' . $copyright_dates[0]->lastdate;
+	}
+	$output = $copyright;
+	}
+	return $output;
+}
 
 /**
  * Implement the Custom Header feature.
@@ -170,4 +221,4 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Generating dynamic sytles.
  */
-require get_template_directory() . '/inc/dynamic-styles.php';
+// require get_template_directory() . '/inc/dynamic-styles.php';
