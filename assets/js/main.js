@@ -4,6 +4,9 @@
 import Menu from "./navigation.js";
 import skipLinkFocus from "./skip-link-focus-fix.js";
 import { RevealChildrenOf } from "./animations.js";
+import * as basicLightbox from "basiclightbox";
+import smoothscroll from "smoothscroll-polyfill";
+
 // import Swiper JS
 import Swiper, {
 	Navigation,
@@ -23,14 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	menu.setupNavigation();
 	menu.enableTouchFocus();
+	smoothscroll.polyfill();
 
 	const myPreloader = document.querySelector(".my-preloader");
 	const page = document.querySelector("#page");
-
 	const twentyBigLogoOutline = document.querySelector(
 		".twenty-big-logo--outline"
 	);
 	const twentyBigLogoLight = document.querySelector(".twenty-big-logo--light");
+
+	const heroVideo = document.querySelector("#heroVideo");
 
 	setTimeout(() => {
 		myPreloader.classList.add("my-preloader-off");
@@ -42,9 +47,44 @@ document.addEventListener("DOMContentLoaded", () => {
 		twentyBigLogoOutline.classList.add("twenty-big-logo--outline-loaded");
 		twentyBigLogoLight.classList.add("twenty-big-logo--light-loaded");
 
+		heroVideo.muted = true;
+		heroVideo.play();
+
 		const locations = document.querySelector(".locations-wrapper");
 		new RevealChildrenOf(locations, 5);
+
+		const productsContainer = document.querySelector(
+			".products-showcase__container"
+		);
+		new RevealChildrenOf(productsContainer, 4);
 	}, 1000);
+
+	// const welcomePseudoElements = document.querySelector(
+	// 	".welcome-view__pseudo-elements"
+	// );
+
+	// setTimeout(() => {
+	// 	welcomePseudoElements.classList.add(
+	// 		"welcome-view__pseudo-elements--loaded"
+	// 	);
+	// }, 1700);
+
+	const scrollDownButton = document.querySelector(".scroll-down");
+
+	scrollDownButton.addEventListener("click", () => {
+		let pageHeight = window.innerHeight;
+		window.scrollBy({
+			top: pageHeight,
+			behavior: "smooth"
+		});
+	});
+
+	const muteButton = document.querySelector(".mute-button");
+
+	muteButton.addEventListener("click", function() {
+		heroVideo.muted = !heroVideo.muted;
+		this.classList.toggle("muted");
+	});
 
 	(function init() {
 		function getTimeRemaining(endtime) {
@@ -73,8 +113,24 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 
 				document.querySelector(".hours > .value").innerText = t.hours;
+
+				if (t.hours < 10) {
+					document.querySelector(".hours > .value").innerText = "0" + t.hours;
+				}
+
 				document.querySelector(".minutes > .value").innerText = t.minutes;
+
+				if (t.minutes < 10) {
+					document.querySelector(".minutes > .value").innerText =
+						"0" + t.minutes;
+				}
+
 				document.querySelector(".seconds > .value").innerText = t.seconds;
+
+				if (t.seconds < 10) {
+					document.querySelector(".seconds > .value").innerText = t.seconds;
+				}
+
 				if (t.total <= 0) {
 					clearInterval(timeinterval);
 				}
@@ -115,7 +171,76 @@ document.addEventListener("DOMContentLoaded", () => {
 	// 	}
 	// };
 
+	document.querySelectorAll(".product__image").forEach(image => {
+		image.onclick = function() {
+			basicLightbox
+				.create(
+					`
+					<img src="${this.dataset.src}" width="800" height="600">
+					`
+				)
+				.show();
+		};
+	});
+
 	Swiper.use([Navigation, Autoplay, Pagination, Parallax, EffectFade, Lazy]);
+
+	var productGallery_1 = new Swiper(".swiper-container-product_1", {
+		direction: "horizontal",
+		loop: false,
+		// parallax: true,
+		centeredSlides: true,
+		slidesPerView: 1,
+		speed: 1000,
+		grabCursor: false,
+
+		pagination: {
+			el: ".swiper-pagination-product_1"
+		},
+
+		navigation: {
+			nextEl: ".swiper-button-next-product_1",
+			prevEl: ".swiper-button-prev-product_1"
+		}
+	});
+
+	var productGallery_2 = new Swiper(".swiper-container-product_2", {
+		direction: "horizontal",
+		loop: false,
+		// parallax: true,
+		centeredSlides: true,
+		slidesPerView: 1,
+		speed: 1000,
+		grabCursor: false,
+
+		pagination: {
+			el: ".swiper-pagination-product_2"
+		},
+
+		navigation: {
+			nextEl: ".swiper-button-next-product_2",
+			prevEl: ".swiper-button-prev-product_2"
+		}
+	});
+
+	var productGallery_3 = new Swiper(".swiper-container-product_3", {
+		direction: "horizontal",
+		loop: false,
+		// parallax: true,
+		centeredSlides: true,
+		slidesPerView: 1,
+		speed: 1000,
+		grabCursor: false,
+
+		pagination: {
+			el: ".swiper-pagination-product_3"
+		},
+
+		navigation: {
+			nextEl: ".swiper-button-next-product_3",
+			prevEl: ".swiper-button-prev-product_3"
+		}
+	});
 
 	var mySwiper = new Swiper(".swiper-container-lookbook", {
 		direction: "horizontal",

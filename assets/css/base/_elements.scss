@@ -114,7 +114,7 @@ table {
 	opacity: 1;
 
 	.preloader-content {
-		background: url(../dist/img/20dawgloader.png) no-repeat;
+		background: url(../dist/img/branding.png) no-repeat;
 		display: block;
 		height: 10em;
 		width: 10em;
@@ -165,4 +165,11 @@ table {
 .font-outline {
 	color: #000;
 	-webkit-text-stroke: 1px white;
+}
+
+::selection {
+	background: rgba(202, 255, 252, 0.2); /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+	background: rgba(202, 255, 252, 0.2); /* Gecko Browsers */
 }
