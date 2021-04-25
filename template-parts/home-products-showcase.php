@@ -5,27 +5,29 @@ $product_3 = get_field('product_3');
 ?>
 
 
-<section class="products-showcase">
-    <!-- <h1>SASZETY</h1> -->
+<section id="scroll-target" class="products-showcase">
+    <h1>SASZETY</h1>
 
     <div class="products-showcase__container">
         <div class="product">
+
+            <span class="swiper-container-holder">
             <div class="swiper-container-product swiper-container-product_1">
 
                 <div class="swiper-wrapper">
 
                     <?php if ($product_1['image_1']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_1['image_1'].'" style="background-image: url('.$product_1['image_1'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image image__1" data-number="0" data-src="'.$product_1['image_1'].'" style="background-image: url('.$product_1['image_1'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
                     <?php if ($product_1['image_2']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_1['image_2'].'" style="background-image: url('.$product_1['image_2'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image image__2" data-number="1" data-src="'.$product_1['image_2'].'" style="background-image: url('.$product_1['image_2'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
                     <?php if ($product_1['image_3']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_1['image_3'].'" style="background-image: url('.$product_1['image_3'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image image__3" data-number="2" data-src="'.$product_1['image_3'].'" style="background-image: url('.$product_1['image_3'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
@@ -37,6 +39,7 @@ $product_3 = get_field('product_3');
                 <div class="swiper-button-next swiper-button-next-product_1"></div>
 
             </div>
+            </span>
 
             <div class="product__info">
             <div class="product__info-upper">
@@ -48,22 +51,24 @@ $product_3 = get_field('product_3');
         </div>
 
         <div class="product">
+
+            <span class="swiper-container-holder">
             <div class="swiper-container-product swiper-container-product_2">
 
                 <div class="swiper-wrapper">
 
                     <?php if ($product_2['image_1']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_2['image_1'].'" style="background-image: url('.$product_2['image_1'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image" data-number="0" data-src="'.$product_2['image_1'].'" style="background-image: url('.$product_2['image_1'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
                     <?php if ($product_2['image_2']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_2['image_2'].'" style="background-image: url('.$product_2['image_2'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image" data-number="1" data-src="'.$product_2['image_2'].'" style="background-image: url('.$product_2['image_2'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
                     <?php if ($product_2['image_3']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_2['image_3'].'" style="background-image: url('.$product_2['image_3'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image" data-number="2" data-src="'.$product_2['image_3'].'" style="background-image: url('.$product_2['image_3'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
@@ -75,6 +80,7 @@ $product_3 = get_field('product_3');
                 <div class="swiper-button-next swiper-button-next-product_2"></div>
 
             </div>
+            </span>
 
             <div class="product__info">
                 <div class="product__info-upper">
@@ -87,22 +93,24 @@ $product_3 = get_field('product_3');
         </div>
 
         <div class="product">
+
+            <span class="swiper-container-holder">
             <div class="swiper-container-product swiper-container-product_3">
 
                 <div class="swiper-wrapper gallery">
 
                     <?php if ($product_3['image_1']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_3['image_1'].'" style="background-image: url('.$product_3['image_1'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image" data-number="0" data-src="'.$product_3['image_1'].'" style="background-image: url('.$product_3['image_1'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
                     <?php if ($product_3['image_2']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_3['image_2'].'" style="background-image: url('.$product_3['image_2'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image" data-number="1" data-src="'.$product_3['image_2'].'" style="background-image: url('.$product_3['image_2'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
                     <?php if ($product_3['image_3']) {
-                    echo '<div class="swiper-slide product__image" data-src="'.$product_3['image_3'].'" style="background-image: url('.$product_3['image_3'].'); background-repeat: no-repeat;"></div>';
+                    echo '<div class="swiper-slide product__image" data-number="2" data-src="'.$product_3['image_3'].'" style="background-image: url('.$product_3['image_3'].'); background-repeat: no-repeat;"></div>';
                     }
                      ?>
 
@@ -114,6 +122,7 @@ $product_3 = get_field('product_3');
                 <div class="swiper-button-next swiper-button-next-product_3"></div>
 
             </div>
+            </span>
 
             <div class="product__info">
             <div class="product__info-upper">

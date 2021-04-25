@@ -6,6 +6,7 @@ import skipLinkFocus from "./skip-link-focus-fix.js";
 import { RevealChildrenOf } from "./animations.js";
 import * as basicLightbox from "basiclightbox";
 import smoothscroll from "smoothscroll-polyfill";
+import SweetScroll from "sweet-scroll";
 
 // import Swiper JS
 import Swiper, {
@@ -72,10 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	const scrollDownButton = document.querySelector(".scroll-down");
 
 	scrollDownButton.addEventListener("click", () => {
-		let pageHeight = window.innerHeight;
-		window.scrollBy({
-			top: pageHeight,
-			behavior: "smooth"
+		// let pageHeight = window.innerHeight;
+		// window.scrollBy({
+		// 	top: pageHeight,
+		// 	behavior: "smooth"
+		// });
+
+		document.querySelector("#scroll-target").scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+			inline: "start"
 		});
 	});
 
@@ -128,7 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				document.querySelector(".seconds > .value").innerText = t.seconds;
 
 				if (t.seconds < 10) {
-					document.querySelector(".seconds > .value").innerText = t.seconds;
+					document.querySelector(".seconds > .value").innerText =
+						"0" + t.seconds;
 				}
 
 				if (t.total <= 0) {
@@ -136,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			}, 1000);
 		}
-		initializeClock(new Date().getFullYear() + "/4/26");
+		initializeClock(new Date().getFullYear() + "/4/30");
 	})();
 
 	// document.addEventListener("scroll", e => {
@@ -171,19 +179,74 @@ document.addEventListener("DOMContentLoaded", () => {
 	// 	}
 	// };
 
+	Swiper.use([Navigation, Autoplay, Pagination, Parallax, EffectFade, Lazy]);
+
 	document.querySelectorAll(".product__image").forEach(image => {
 		image.onclick = function() {
-			basicLightbox
-				.create(
-					`
-					<img src="${this.dataset.src}" width="800" height="600">
-					`
-				)
-				.show();
+			const markup = this.closest(".swiper-container-holder").cloneNode(true);
+			console.log(markup);
+			markup
+				.querySelector(".swiper-container-product")
+				.classList.add("swiper-lightbox");
+
+			markup.querySelector(".swiper-wrapper").style = "";
+
+			markup
+				.querySelector(".swiper-pagination")
+				.classList.add("swiper-pagination-lightbox");
+
+			markup
+				.querySelector(".swiper-button-next")
+				.classList.add("swiper-button-next-lightbox");
+
+			markup
+				.querySelector(".swiper-button-prev")
+				.classList.add("swiper-button-prev-lightbox");
+
+			const thisSlideNumber = this.dataset.number;
+
+			const closeButton = document.createElement("A");
+			closeButton.classList.add("close-lightbox");
+
+			markup.appendChild(closeButton);
+
+			// this.closest(".swiper-wrapper").childNodes.forEach(node => {
+			// 	return `<div></div>`;
+			// });
+
+			const instance = basicLightbox.create(markup, {
+				onShow: instance => {
+					instance.element().querySelector("a").onclick = instance.close;
+				}
+			});
+
+			instance.show();
+
+			// onShow: (instance) => {
+			// 	instance.element().querySelector('a').onclick = instance.close
+			// }
+
+			var productGallery_lightbox = new Swiper(".swiper-lightbox", {
+				direction: "horizontal",
+				loop: false,
+				// parallax: true,
+				centeredSlides: true,
+				slidesPerView: 1,
+				speed: 1000,
+				grabCursor: true,
+				initialSlide: thisSlideNumber,
+
+				pagination: {
+					el: ".swiper-pagination-lightbox"
+				},
+
+				navigation: {
+					nextEl: ".swiper-button-next-lightbox",
+					prevEl: ".swiper-button-prev-lightbox"
+				}
+			});
 		};
 	});
-
-	Swiper.use([Navigation, Autoplay, Pagination, Parallax, EffectFade, Lazy]);
 
 	var productGallery_1 = new Swiper(".swiper-container-product_1", {
 		direction: "horizontal",

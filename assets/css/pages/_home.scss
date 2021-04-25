@@ -5,6 +5,10 @@
 	flex-flow: COLUMN;
 	justify-content: SPACE-AROUND;
 
+	&__upper-wrapper {
+		overflow: hidden;
+	}
+
 	.twenty-big-logo {
 		&__holder {
 			position: relative;
@@ -182,6 +186,7 @@
 	&__pseudo-elements {
 		// height: 25vh;
 		position: relative;
+		margin-top: 2em;
 
 		display: flex;
 		flex-flow: column;
@@ -401,6 +406,11 @@
 	}
 }
 
+section h1 {
+	text-align: center;
+	font-size: 3rem;
+}
+
 .locations-wrapper {
 	// @media screen and (max-width: 992px) {
 	// 	padding-top: 7em;
@@ -418,14 +428,46 @@
 	}
 }
 
+.swiper-lightbox {
+	height: 75vh;
+	width: 90%;
+	margin: auto;
+
+	@media screen and (min-width: 992px) {
+		// height: 600px;
+		width: 800px;
+	}
+
+	.swiper-slide {
+		background-size: contain;
+	}
+}
+
+.close-lightbox {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 40px;
+	height: 40px;
+	z-index: 999;
+	background-image: url(../dist/svg/close_button.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	transition: all 0.5s ease-in;
+}
+
 .products-showcase {
 	// height: 70vh;
 	position: relative;
-	margin-top: 5em;
+	margin-top: 2em;
+	padding-top: 3em;
 	margin-bottom: 10em;
 
 	@media screen and (min-width: 992px) {
-		margin-top: 15em;
+		margin-top: 10em;
+		padding-top: 3em;
 		margin-bottom: 15em;
 	}
 
@@ -465,12 +507,16 @@
 		position: relative;
 
 		@media screen and (max-width: 992px) {
-			margin-bottom: 4em;
+			margin-bottom: 6em;
 		}
 
 		@media screen and (min-width: 992px) {
 			width: 30%;
-			height: 70vh;
+			height: 60vh;
+		}
+
+		.swiper-container-product {
+			height: 70%;
 		}
 
 		&__image {
@@ -489,7 +535,14 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
+				flex-flow: column;
+				margin-bottom: 1.5em;
 			}
+		}
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			top: calc(100% - var(--swiper-navigation-size));
 		}
 
 		.order-button {
@@ -501,8 +554,8 @@
 			display: block;
 			text-decoration: none;
 			border-radius: 100rem;
-			width: 50%;
-			margin: auto;
+			width: 65%;
+			margin: 0 auto;
 			transition: all 0.3s ease-in-out;
 
 			&:hover {
@@ -511,16 +564,6 @@
 				border: 1px solid #fff;
 			}
 		}
-	}
-
-	.swiper-container-product {
-		position: relative;
-		overflow: hidden;
-	}
-
-	.swiper-button-prev,
-	.swiper-button-next {
-		top: calc(100% - var(--swiper-navigation-size));
 	}
 
 	h3 {
@@ -532,16 +575,22 @@
 	.price {
 		font-size: 1.25rem;
 		margin: 0;
-		padding-top: 1em;
+		padding-top: 0.5em;
 		// padding-bottom: 1em;
 		color: #4abe75;
 	}
+}
+
+.swiper-container-product {
+	position: relative;
+	overflow: hidden;
 }
 
 .swiper-slide {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	object-fit: contain;
 
 	@media screen and (max-width: 992px) {
 		background-position: center;
@@ -661,7 +710,7 @@ $continer-padding: 30px 20px 10px 20px;
 			float: left;
 			font-size: 20pt;
 			position: relative;
-			margin-top: 15px;
+			margin-top: 5px;
 			opacity: 0.7;
 			animation: pink 1s ease-in-out infinite;
 		}
@@ -697,10 +746,6 @@ $continer-padding: 30px 20px 10px 20px;
 	left: 0;
 	z-index: -9999;
 	object-fit: cover;
-}
-
-.swiper-container-product {
-	height: 60%;
 }
 
 .basicLightbox {

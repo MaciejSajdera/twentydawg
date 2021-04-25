@@ -24,6 +24,7 @@
 </div>
 <body <?php body_class(); ?>>
 
+
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
@@ -68,9 +69,9 @@
 
 		<nav id="site-navigation" class="main-navigation" style="transform: translateY(-200%);">
 
-			<video autoplay loop muted>
+			<!-- <video autoplay loop muted>
 				<source src="<?php echo get_template_directory_uri().'/Twenty-Dawg-Promo.mp4'; ?>" type="video/mp4">
-			</video>
+			</video> -->
 
 
 			<?php

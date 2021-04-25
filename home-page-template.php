@@ -7,6 +7,7 @@
  */
 
 global $post;
+$video = get_field('hero_video');
 
 get_header();
 ?>
@@ -25,8 +26,8 @@ get_header();
 				
 				<div class="hero-image">
 
-				<video muted id="heroVideo">
-					<source src="<?php echo get_template_directory_uri().'/Twenty-Dawg-Promo.mp4'; ?>" type="video/mp4">
+				<video loop muted id="heroVideo">
+					<source src="<?php echo $video['url']; ?>" type="video/mp4">
 				</video>
 				</div>
 
